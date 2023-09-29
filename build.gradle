@@ -1,10 +1,12 @@
 plugins {
   //inlude the nodeJS plugin to execute nodejs and npm tasks
-  id("com.github.node-gradle.node") version "2.2.4"
+  id("com.github.node-gradle.node") version "8.3"
 }
 
 node {
 	download = true
+	version = "18.18.0"
+	npmVersion = "18.14.1"
 }
 
 //declare a build task
