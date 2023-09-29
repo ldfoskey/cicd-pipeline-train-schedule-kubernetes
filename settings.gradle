@@ -7,4 +7,4 @@ ct/*
  * in the user guide at https://docs.gradle.org/5.0/userguide/multi_project_builds.html
  */
 
-rootProject.name = 'my-project'
+rootProject.name = 'cicd-pipeline-train-schedule-kubernetes'
