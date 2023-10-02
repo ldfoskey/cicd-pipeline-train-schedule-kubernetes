@@ -44,11 +44,10 @@ pipeline {
             }
             steps {
                 script {
-                    kubernetesDeploy(
                         kubeconfigId: 'kubeconfig',
                         configs: 'train-schedule-kube.yml',
                         enableConfigSubstitution: true
-                )}
+                }
             }
         }
     }
