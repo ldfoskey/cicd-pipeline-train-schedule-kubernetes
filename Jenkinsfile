@@ -43,11 +43,11 @@ pipeline {
                 branch 'master'
             }
             steps {
-                script {
+                
                         kubeconfigId: 'kubeconfig',
                         configs: 'train-schedule-kube.yml',
                         enableConfigSubstitution: true
-                }
+                
             }
         }
     }
