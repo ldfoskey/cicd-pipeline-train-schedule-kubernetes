@@ -45,9 +45,9 @@ pipeline {
             steps {
                 input 'Deploy to Production?'
                 milestone(1)
-                withKubeConfig([credentialsId: 'kubeconfig-file']) {
+                withKubeConfig([credentialsId: 'kubeconfig']) {
 
-                    sh 'k3s kubectl apply -f $JENKINSHOME/workspace/train-schedule-kubernetesmaster/train-schedule-kube.yml'
+                    sh 'k3s kubectl apply -f $JENKINSHOME/workspace/train-schedule/train-schedule-kube.yml'
 
                             }
                       }
