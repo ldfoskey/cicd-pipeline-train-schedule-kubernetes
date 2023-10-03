@@ -1,4 +1,4 @@
-pipeline {
+PASSpipeline {
     agent any
     environment {
         //be sure to replace "willbla" with your own Docker Hub username
@@ -49,7 +49,7 @@ pipeline {
 
                  script {
 
-                    sh "envsubst < ./train-schedule-kube.yml > /tmp/train-schedule-kube.yml && sshpass -p 'OMFN0680mqxg' -v scp -r /tmp/train-schedule-kube.yml $USERNAME@$control_ip:/tmp/ && rm /tmp/train-schedule-kube.yml"
+                    sh "envsubst < ./train-schedule-kube.yml > /tmp/train-schedule-kube.yml && sshpass -p '$USERPASS' -v scp -r /tmp/train-schedule-kube.yml $USERNAME@$control_ip:/tmp/ && rm /tmp/train-schedule-kube.yml"
 
                     sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no [54.172.225.38] $USERNAME@$control_ip \"kubectl apply -f /tmp/train-schedule-kube.yml && rm /tmp/train-schedule-kube.yml\""
                             }
