@@ -47,7 +47,7 @@ pipeline {
                 milestone(1)
                 withKubeConfig([credentialsId: 'kubeconfig']) {
 
-                    sh 'k3s kubectl apply -f $JENKINSHOME/workspace/train-schedule/train-schedule-kube.yml'
+                    sh 'kubectl apply -f $JENKINSHOME/workspace/train-schedule/train-schedule-kube.yml'
 
                             }
                       }
