@@ -47,7 +47,7 @@ pipeline {
                 milestone(1)
                 Kubernetes {
                     configs 'train-schedule-kube.yml',
-                    enableConfigSubstitution: true
+                    enableConfigSubstitution true
                 } 
             }
         }
