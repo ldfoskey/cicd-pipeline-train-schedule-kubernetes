@@ -51,7 +51,7 @@ pipeline {
 
                     sh "envsubst < ./train-schedule-kube.yml > /tmp/train-schedule-kube.yml && sshpass -p '$USERPASS' -v scp /tmp/train-schedule-kube.yml $USERNAME@$control_ip:/tmp/ && rm /tmp/train-schedule-kube.yml"
 
-                    sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no [3.95.209.80] $USERNAME@$control_ip \"kubectl apply -f /tmp/train-schedule-kube.yml && rm /tmp/train-schedule-kube.yml\""
+                    sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no [git@github.com:ldfoskey/cicd-pipeline-train-schedule-kubernetes.git] $USERNAME@$control_ip \"kubectl apply -f /tmp/train-schedule-kube.yml && rm /tmp/train-schedule-kube.yml\""
                             }
                       }
                 }
