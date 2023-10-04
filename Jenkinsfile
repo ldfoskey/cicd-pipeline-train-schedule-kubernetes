@@ -59,10 +59,14 @@ pipeline {
                                  transfers: [
                                     sshTransfer(
                                         execCommand: "sudo envsubst < ./train-schedule-kube.yml > /tmp/train-schedule-kube.yml && sshpass -p '$USERPASS' -v scp /tmp/train-schedule-kube.yml $USERNAME@$control_ip:/tmp/ && rm /tmp/train-schedule-kube.yml",
-                                        execCommand: "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no [54.234.169.174] $USERNAME@$control_ip \"kubectl apply -f /tmp/train-schedule-kube.yml && rm /tmp/train-schedule-kube.yml\""
-                                    )
-                                  ]
+                                       )
+                                  ],
+                                transfers: [
+                                    sshTransfer(
+                                      execCommand: "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no [54.234.169.174] $USERNAME@$control_ip \"kubectl apply -f /tmp/train-schedule-kube.yml && rm /tmp/train-schedule-kube.yml\""
                                 )
+                            ]
+                     )
                             ]
                      )
                 
