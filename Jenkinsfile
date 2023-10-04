@@ -50,8 +50,8 @@ pipeline {
                     sh "envsubst < ./train-schedule-kube.yml > /tmp/train-schedule-kube.yml && sshpass -p '$USERPASS' -v scp /tmp/train-schedule-kube.yml $USERNAME@$control_ip:/tmp/ && rm /tmp/train-schedule-kube.yml"
                    }
                     sshPublisher(
-                        failOnError: false,
-                        continueOnError: true,
+                        failOnError: true,
+                        continueOnError: false,
                         publishers: [
                             sshPublisherDesc(
                                 configName: 'kube_server',
