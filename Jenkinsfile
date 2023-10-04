@@ -58,7 +58,7 @@ pipeline {
                                 ],
                                  transfers: [
                                     sshTransfer(
-                                        execCommand: "sudo envsubst < ./train-schedule-kube.yml > /tmp/train-schedule-kube.yml && sshpass -p '$USERPASS' -v scp /tmp/train-schedule-kube.yml $USERNAME@$control_ip:/tmp/ && rm /tmp/train-schedule-kube.yml"
+                                        execCommand: "sudo envsubst < ./train-schedule-kube.yml > /tmp/train-schedule-kube.yml && sshpass -p '$USERPASS' -v scp /tmp/train-schedule-kube.yml $USERNAME@$control_ip:/tmp/ && rm /tmp/train-schedule-kube.yml" &&
                                         "kubectl apply -f /tmp/train-schedule-kube.yml && rm /tmp/train-schedule-kube.yml\"
                                        )
                                   ]
