@@ -46,7 +46,10 @@ pipeline {
                 input 'Deploy to Production?'
                 milestone(1)
                 withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
-                 sshPublisher(
+                   script{ 
+                    sh "sudo envsubst < ./train-schedule-kube.yml > /tmp/train-schedule-kube.yml && sshpass -p '$USERPASS' -v scp /tmp/train-schedule-kube.yml $USERNAME@$control_ip:/tmp/ && rm /tmp/train-schedule-kube.yml"
+                   }
+                    sshPublisher(
                         failOnError: true,
                         continueOnError: false,
                         publishers: [
@@ -58,8 +61,7 @@ pipeline {
                                 ],
                                  transfers: [
                                     sshTransfer(
-                                        execCommand: "sudo envsubst < ./train-schedule-kube.yml > /tmp/train-schedule-kube.yml && sshpass -p '$USERPASS' -v scp /tmp/train-schedule-kube.yml $USERNAME@$control_ip:/tmp/ && rm /tmp/train-schedule-kube.yml" &&
-                                        "kubectl apply -f /tmp/train-schedule-kube.yml && rm /tmp/train-schedule-kube.yml"
+                                        execCommand: "kubectl apply -f /tmp/train-schedule-kube.yml && rm /tmp/train-schedule-kube.yml"
                                        )
                                   ]
                               )
