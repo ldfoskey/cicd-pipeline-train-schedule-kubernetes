@@ -61,7 +61,7 @@ pipeline {
                                 ],
                                  transfers: [
                                     sshTransfer(
-                                        execCommand: "sudo kubectl apply -f /tmp/train-schedule-kube.yml && rm /tmp/train-schedule-kube.yml"
+                                        execCommand: "kubectl apply -f /tmp/train-schedule-kube.yml && rm /tmp/train-schedule-kube.yml"
                                        )
                                   ]
                               )
