@@ -45,23 +45,13 @@ pipeline {
             steps {
                 input 'Deploy to Production?'
                 milestone(1)
-                withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
+                withCredentials([sshUserPrivateKey(credentialsId: 'webserver_login', keyFileVariable: 'MYSSHKEY', usernameVariable: 'USERNAME')]) {
                    script{ 
-                    sh "envsubst < ./train-schedule-kube.yml > /tmp/train-schedule-kube.yml && ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $USERNAME@$control_ip sshpass -p $USERPASS -v scp /tmp/train-schedule-kube.yml /tmp/ && rm /tmp/train-schedule-kube.yml"
+                    sh "envsubst < ./train-schedule-kube.yml > /tmp/train-schedule-kube.yml && scp -i $MYSSHKEY /tmp/train-schedule-kube.yml $USERNAME@$control_ip:/tmp/ && rm /tmp/train-schedule-kube.yml"
+                    ssh -i $MYSSHKEY $USERNAME@control-ip "kubectl apply -f /tmp/train-schedule-kube.yml && rm /tmp/train-schedule-kube.yml"
                    }
-                    sshPublisher(
-                        failOnError: true,
-                        continueOnError: false,
-                        publishers: [
-                            sshPublisherDesc(
-                                configName: 'kube_server',
-                                sshCredentials: [
-                                    username: "$USERNAME",
-                                    encryptedPassphrase: "$USERPASS"
-                                ],
-                                 transfers: [
-                                    sshTransfer(
-                                        execCommand: "kubectl apply -f /tmp/train-schedule-kube.yml && rm /tmp/train-schedule-kube.yml"
+                   
+                                         
                                        )
                                   ]
                               )
