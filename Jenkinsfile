@@ -47,7 +47,8 @@ pipeline {
                 milestone(1)
                 withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                    script{ 
-                    sh "envsubst < ./train-schedule-kube.yml > /tmp/train-schedule-kube.yml && sshpass -p '$USERPASS' -v scp /tmp/train-schedule-kube.yml $USERNAME@$control_ip:/tmp/ && rm /tmp/train-schedule-kube.yml"
+                    sh "envsubst < ./train-schedule-kube.yml > /tmp/train-schedule-kube.yml && sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@$control_ip:scp /tmp/train-schedule-kube.yml
+                     /tmp/ && rm /tmp/train-schedule-kube.yml"
                    }
                     sshPublisher(
                         failOnError: true,
