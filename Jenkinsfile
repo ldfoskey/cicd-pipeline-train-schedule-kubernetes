@@ -47,7 +47,7 @@ pipeline {
                 milestone(1)
                 withCredentials([sshUserPrivateKey(credentialsId: 'webserver_login', keyFileVariable: 'MYSSHKEY', usernameVariable: 'USERNAME')]) {
                     sh ''' 
-                    envsubst < ./train-schedule-kube.yml > /tmp/train-schedule-kube.yml
+                    'scp -i $MYSSHKEY train-schedule-kube.yml $USERNAME@$control_ip:/tmp'
                     'ssh -i $MYSSHKEY $USERNAME@$control_ip "kubectl apply -f /tmp/train-schedule-kube.yml && rm /tmp/train-schedule-kube.yml" '
                     
                     '''
