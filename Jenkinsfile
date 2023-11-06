@@ -48,7 +48,7 @@ pipeline {
                 withCredentials([sshUserPrivateKey(credentialsId: 'webserver_login', keyFileVariable: 'MYSSHKEY', usernameVariable: 'USERNAME')]) {
                     script {
                         sh 'cp ./train-schedule-kube.yml /tmp'
-                        'ssh -i $MYSSHKEY $USERNAME@$control_ip kubectl apply -f /tmp/train-schedule-kube.yml && rm /tmp/train-schedule-kube.yml'
+                        sh 'ssh -i $MYSSHKEY $USERNAME@$control_ip kubectl apply -f /tmp/train-schedule-kube.yml && rm /tmp/train-schedule-kube.yml'
                 }
             }
         }
