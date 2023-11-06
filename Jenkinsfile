@@ -45,14 +45,11 @@ pipeline {
             steps {
                 input 'Deploy to Production?'
                 milestone(1)
-                withCredentials([sshUserPrivateKey(credentialsId: 'webserver_login', keyFileVariable: 'MYSSHKEY', usernameVariable: 'USERNAME')]) {
-                    sh ''' 
-                    'cp ./train-schedule-kube.yml /tmp'
-                    'kubectl apply -f /tmp/train-schedule-kube.yml && rm /tmp/train-schedule-kube.yml'
-                    
-                    '''
-                          }
-                      }
-                 }
+                script {
+                    sh 'cp ./train-schedule-kube.yml /tmp'
+                    sh 'kubectl apply -f /tmp/train-schedule-kube.yml && rm /tmp/train-schedule-kube.yml'
+                }
+            }
+        }
     }
 }
