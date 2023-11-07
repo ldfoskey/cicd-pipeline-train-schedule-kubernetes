@@ -34,3 +34,6 @@ spec:
         image: ldfoskey007/train-schedule:latest
         ports:
         - containerPort: 32000
+        externalIPs:
+        - 13.52.238.77
+        - 52.53.196.15
