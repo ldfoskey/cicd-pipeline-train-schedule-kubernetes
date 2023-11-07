@@ -10,7 +10,6 @@ spec:
   - protocol: TCP
     port: 8080
     targetPort: 8080
-    nodePort: 30001
   externalIPs:
   - 3.101.149.0
   - 52.53.208.141
@@ -36,5 +35,4 @@ spec:
       containers:
       - name: train-schedule
         image: ldfoskey007/train-schedule:latest
-        ports:
-        - containerPort: 8080
+       
