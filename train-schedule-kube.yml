@@ -10,10 +10,7 @@ spec:
   - protocol: TCP
     port: 8080
     targetPort: 8080
-  externalIPs:
-  - 3.101.149.0
-  - 52.53.208.141
-
+  
 ---
 
 apiVersion: apps/v1
