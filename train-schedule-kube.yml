@@ -9,7 +9,7 @@ spec:
   ports:
   - protocol: TCP
     port: 8080
-    nodePort: 32000
+    nodePort: 31000
   externalIPs:
   - 13.52.238.77
   - 52.53.196.15
