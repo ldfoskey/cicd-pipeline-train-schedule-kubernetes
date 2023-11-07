@@ -37,4 +37,4 @@ spec:
       - name: train-schedule
         image: ldfoskey007/train-schedule:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 31000
