@@ -8,7 +8,7 @@ spec:
     app: train-schedule
   ports:
   - protocol: TCP
-    port: 32000
+    port: 8080
     nodePort: 32000
   externalIPs:
   - 13.52.238.77
