@@ -8,8 +8,8 @@ spec:
     app.kubernetes.io/name: train-schedule
   ports:
   - protocol: TCP
-    port: 8080
-    targetPort: 8080
+    port: 31000
+    targetPort: 31000
     nodePort: 31000
   externalIPs:
   - 13.52.238.77
