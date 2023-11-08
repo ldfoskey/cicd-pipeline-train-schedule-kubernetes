@@ -13,8 +13,8 @@ spec:
     targetPort: 8080
     nodePort: 32502
   externalIPs:
-    - 54.183.216.51
-    - 3.101.19.208  
+    - 54.177.87.152
+    - 54.215.137.207  
 ---
 
 apiVersion: apps/v1
