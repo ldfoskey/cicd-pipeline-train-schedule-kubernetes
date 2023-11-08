@@ -1,6 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
+  namespace: train-schedule
   name: train-schedule-service
 spec:
   type: NodePort
