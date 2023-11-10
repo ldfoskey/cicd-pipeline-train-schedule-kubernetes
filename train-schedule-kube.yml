@@ -1,3 +1,4 @@
+apiVerision: v1
 kind: Service
 apiVersion: v1
 metadata:
@@ -6,7 +7,7 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app.kubernetes.io/name: train-schedule
+    app: train-schedule
   ports:
   - protocol: TCP
     port: 8080
