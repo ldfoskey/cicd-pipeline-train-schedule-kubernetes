@@ -1,4 +1,4 @@
-apiVerision: v1
+apiVersion: v1
 kind: Service
 apiVersion: v1
 metadata:
