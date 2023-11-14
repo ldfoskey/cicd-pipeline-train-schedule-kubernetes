@@ -96,7 +96,7 @@ sudo ufw allow 6443 or sudo ufw disable
 
 https://www.thinkcode.se/blog/2019/02/20/kubernetes-service-node-port-range
 	- vim  /etc/kubernetes/manifests/kube-apiserver.yaml
-	- --service-node-port-range=8000-31274 (add it just below "--service-cluster-ip-range" entry
+	- --service-node-port-range=8000-31274 (add it just below "--service-cluster-ip-range" entry)
 
 # vim kube-config.yml:
 
