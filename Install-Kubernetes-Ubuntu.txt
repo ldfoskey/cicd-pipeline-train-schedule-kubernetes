@@ -92,23 +92,26 @@ sudo ufw allow 6443 or sudo ufw disable
 
 
 ### ONLY ON CONTROL NODE .. control plane install:
-# kubeadm init --pod-network-cidr 10.244.0.0/16 --kubernetes-version 1.27.2 --node-name
-# bea4823eca1c.mylabserver.com
+ kubeadm init --pod-network-cidr 10.244.0.0/16 --kubernetes-version 1.27.2 --node-name bea4823eca1c.mylabserver.com
 
-vim kube-config.yml:
+https://www.thinkcode.se/blog/2019/02/20/kubernetes-service-node-port-range
+	- vim  /etc/kubernetes/manifests/kube-apiserver.yaml
+	- --service-node-port-range=8000-31274 (add it just below "--service-cluster-	    ip-range" entry
 
-	apiVersion: kubeadm.k8s.io/v1beta3
-	kind: ClusterConfiguration
-	networking:
-  		serviceSubnet: "10.96.0.0/16"
-  		podSubnet: "10.244.0.0/24"
-  		dnsDomain: "cluster.local"
-	kubernetesVersion: "v1.27.2"
-	apiServer:
-  	  extraArgs:
-    		service-node-port-range: 8000-31274
+# vim kube-config.yml:
 
-kubeadm init --config kube-config.yml
+#	apiVersion: kubeadm.k8s.io/v1beta3
+#	kind: ClusterConfiguration
+#	networking:
+#  		serviceSubnet: "10.96.0.0/16"
+#  		podSubnet: "10.244.0.0/24"
+#  		dnsDomain: "cluster.local"
+#	kubernetesVersion: "v1.27.2"
+#	apiServer:
+#  	  extraArgs:
+#    		service-node-port-range: 8000-31274
+
+# kubeadm init --config kube-config.yml
 
   mkdir -p $HOME/.kube
   sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
@@ -123,10 +126,9 @@ or
 
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
-# wget https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/custom-
-# resources.yaml
+# wget https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/custom-resources.yaml
 
-# vim custom-resources.yaml <<<<<< edit the CIDR for pods if its custom by changing cidr in  # file to 10.10.0.0/16
+# - <<<<<< edit the CIDR for pods if its custom by changing cidr in  # file to 10.10.0.0/16
 
 # kubectl apply -f custom-resources.yaml
 
@@ -139,12 +141,12 @@ kubeadm token create --print-join-command
 ## ONLY ON WORKER nodes
 Run the command from the token create output above
 
-54.67.87.220   bea4823eca1c.mylabserver.com
-18.144.125.15  bea4823eca2c.mylabserver.com
-3.101.143.82   bea4823eca3c.mylabserver.com
+13.52.75.135   bea4823eca1c.mylabserver.com
+54.241.224.107 bea4823eca2c.mylabserver.com
+54.151.9.173   bea4823eca3c.mylabserver.com
 
-172.31.105.140 bea4823eca1c.mylabserver.com
-172.31.97.203  bea4823eca2c.mylabserver.com
-172.31.111.48  bea4823eca3c.mylabserver.com
+172.31.105.110 bea4823eca1c.mylabserver.com
+172.31.107.66  bea4823eca2c.mylabserver.com
+172.31.96.100  bea4823eca3c.mylabserver.com
 
 
