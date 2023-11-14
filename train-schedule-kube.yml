@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  namespace: trains-schedules
+  namespace: train-schedule
   name: train-schedule-service
   labels:
     app: train-schedule
@@ -25,7 +25,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: trains-schedules
+  namespace: train-schedule
   name: train-schedule-deployment
   labels:
     app: train-schedule
