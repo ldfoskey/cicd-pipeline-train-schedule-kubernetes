@@ -42,11 +42,11 @@ spec:
         app: train-schedule
         name: train-schedule
     spec:
-      nodeSelector:
-        disktype: ssd
       containers:
       - name: train-schedule-container
         image: ldfoskey007/train-schedule:latest
         ports:
         - containerPort: 8080
+      nodeSelector:
+        disktype: ssd
        
