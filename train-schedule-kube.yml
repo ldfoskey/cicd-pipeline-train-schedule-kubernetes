@@ -16,9 +16,9 @@ spec:
     port: 8080
     targetPort: 8080
     nodePort: 8080
- externalIPs:
- - 54.176.27.227
- - 18.144.171.242    
+  externalIPs:
+  - 54.176.27.227
+  - 18.144.171.242    
     
 ---
 
