@@ -6,6 +6,7 @@ metadata:
   labels:
     app: train-schedule
     name: train-schedule
+    disktype: ssd
 spec:
   type: NodePort
   selector:
@@ -30,6 +31,7 @@ metadata:
   labels:
     app: train-schedule
     name: train-schedule
+    disktype: ssd
 spec:
   replicas: 2
   selector:
