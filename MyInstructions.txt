@@ -137,7 +137,9 @@ helm repo update
 
 kubectl create namespace prometheus
 
-helm install -f prometheus-values.yml prometheus prometheus-community/kube-prometheus-stack --namespace prometheus
+helm install -f prometheus-values.yml prometheus prometheus-community/prometheus --namespace prometheus
+
+# helm install -f prometheus-values.yml prometheus prometheus-community/kube-prometheus-stack --namespace prometheus
 
 NOTES:
 kube-prometheus-stack has been installed. Check its status by running:
