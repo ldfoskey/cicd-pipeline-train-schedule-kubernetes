@@ -147,9 +147,7 @@ kube-prometheus-stack has been installed. Check its status by running:
 
 Visit https://github.com/prometheus-operator/kube-prometheus for instructions on how to create & configure Alertmanager and Prometheus instances using the Operator.
 
-for Grafana datasource settings:
-
-http://10.105.87.138:9090 >>>>>ip address refers to prometheus-kube-prometheus-prometheus cluster ip
+kubectl expose service prometheus-server --type=NodePort --target-port=9090 --name=prometheus-server-ext -n prometheus --external-ip=52.53.172.219
 
 
 Install Grafana
