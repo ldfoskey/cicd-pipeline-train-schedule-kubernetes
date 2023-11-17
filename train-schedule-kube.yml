@@ -5,8 +5,7 @@ metadata:
   name: train-schedule-service
   labels:
     app: train-schedule
-    name: train-schedule
-    disktype: ssd
+    name: train-schedule    
 spec:
   type: NodePort
   selector:
@@ -30,8 +29,7 @@ metadata:
   name: train-schedule-deployment
   labels:
     app: train-schedule
-    name: train-schedule
-    disktype: ssd
+    name: train-schedule    
 spec:
   replicas: 2
   selector:
@@ -48,7 +46,4 @@ spec:
       - name: train-schedule-container
         image: ldfoskey007/train-schedule:latest
         ports:
-        - containerPort: 8080
-      nodeSelector:
-        disktype: ssd
-       
+        - containerPort: 8080      
