@@ -84,15 +84,15 @@ swapoff -a
 # check swap config, ensure swap is 0
 free -m
 
-apt-get install -y kubelet=1.27.2-00 kubeadm=1.27.2-00 kubectl=1.27.2-00
-apt-mark hold kubelet kubeadm kubectl
-
 sudo ufw status
 sudo ufw allow 6443 or sudo ufw disable
 
+apt-get install -y kubelet=1.27.2-00 kubeadm=1.27.2-00 kubectl=1.27.2-00
+apt-mark hold kubelet kubeadm kubectl
+
 
 ### ONLY ON CONTROL NODE .. control plane install:
- kubeadm init --pod-network-cidr 10.244.0.0/16 --kubernetes-version 1.27.2 --node-name bea4823eca1c.mylabserver.com
+kubeadm init --pod-network-cidr 10.244.0.0/16 --kubernetes-version 1.27.2 --node-name bea4823eca1c.mylabserver.com
 
 https://www.thinkcode.se/blog/2019/02/20/kubernetes-service-node-port-range
 	- vim  /etc/kubernetes/manifests/kube-apiserver.yaml
@@ -120,9 +120,9 @@ https://www.thinkcode.se/blog/2019/02/20/kubernetes-service-node-port-range
 
 # add Calico 3.25 CNI 
 ### https://docs.tigera.io/calico/3.25/getting-started/kubernetes/quickstart
-kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/tigera-operator.yaml
+# kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/tigera-operator.yaml
 
-or
+# or
 
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
