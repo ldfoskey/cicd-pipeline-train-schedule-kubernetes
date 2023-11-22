@@ -50,9 +50,9 @@ pipeline {
                         sh 'cp ./train-schedule-kube.yml /tmp'
                         sh 'kubectl create namespace train-schedule'
                         sh 'kubectl apply -f /tmp/train-schedule-kube.yml && rm /tmp/train-schedule-kube.yml'
-                }
+               }
             }
-        }
-    }
-}
+         }
+      }
+   }
 }
